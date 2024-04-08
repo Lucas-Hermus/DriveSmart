@@ -6,10 +6,28 @@
         <span class="open-menu-btn"><hr><hr><hr></span>
     </div>
     <ul class="vertical-menu">
-        <a href="{{ route('instructor.example.index') }}" class="navItem">
+        <a href="{{ route('instructor.dashboard.index') }}" class="navItem">
             <li class="menu-item">
                 <i class='bx bxs-dashboard'></i>
                 <span>Dashboard</span>
+            </li>
+        </a>
+        <a href="{{ route('instructor.strip_card.new') }}" class="navItem">
+            <li class="menu-item">
+                <i class='bx bxs-credit-card-front'></i>
+                <span>Strippenkaart aanmaken</span>
+            </li>
+        </a>
+        <a href="{{ route('instructor.student.index') }}" class="navItem">
+            <li class="menu-item">
+                <i class='bx bxs-user'></i>
+                <span>Leerlingen</span>
+            </li>
+        </a>
+        <a href="{{ route('instructor.lesson.index') }}" class="navItem">
+            <li class="menu-item">
+                <i class='bx bxs-car'></i>
+                <span>lessen</span>
             </li>
         </a>
 

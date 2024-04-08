@@ -32,7 +32,7 @@ class LessonFactory extends Factory
             "car_id" => $filled ? $carId : null,
             "student_id" => $filled ? $student_id : null,
             "start" => $start,
-            "end" => $start->addhour(1),
+            "end" => $start->addHour(),
         ];
     }
 }

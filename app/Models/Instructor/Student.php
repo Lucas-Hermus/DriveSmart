@@ -16,4 +16,9 @@ class Student extends Model
     public function stripCards(){
         return $this->hasMany(StripCard::class, "student_id", "id");
     }
+
+    // a student has many lessons
+    public function lessons(){
+        return $this->hasMany(Lesson::class, "student_id", "id");
+    }
 }
