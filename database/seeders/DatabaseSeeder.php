@@ -2,9 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Instructor\Car;
+use App\Models\Instructor\Instructor;
+use App\Models\Instructor\Lesson;
+use App\Models\Instructor\StripCard;
+use App\Models\Instructor\Student;
+use Database\Factories\Instructor\LessonFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +19,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        DB::table('instructor')->insert([
+            "first_name" => 'instructor',
+            "sir_name" => 'instructor',
+            "email" => "instructor@instructor.com",
+            "is_admin" => false,
+            "password" => Hash::make("instructor"),
         ]);
+
+        DB::table('instructor')->insert([
+            "first_name" => 'admin',
+            "sir_name" => 'admin',
+            "email" => "admin@admin.com",
+            "is_admin" => true,
+            "password" => Hash::make("admin"),
+        ]);
+
+        DB::table('student')->insert([
+            "first_name" => "student",
+            "sir_name" => "student",
+            "address" => "-",
+            "zipcode" => "4032TD",
+            "city" => "Roermond",
+            "phone" => "0612345678",
+            "email" => "student@student.com",
+            "password" => Hash::make("student"),
+        ]);
+
+        Car::factory()->times(100)->create();
+        Student::factory()->times(100)->create();
+        Instructor::factory()->times(100)->create();
+        StripCard::factory()->times(100)->create();
+        Lesson::factory()->times(100)->create();
     }
 }

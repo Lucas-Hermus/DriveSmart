@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\instructor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 
