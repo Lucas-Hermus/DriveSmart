@@ -18,8 +18,10 @@ class CheckUserRole
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
+        // store the user as instructor and as student.
         $instructor = Auth::guard('instructor')->user();
         $student = Auth::guard('student')->user();
+
         if($role == "instructor" && !isset($instructor)){
             return redirect()->route("login");
         }

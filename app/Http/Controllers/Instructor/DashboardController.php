@@ -8,20 +8,23 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("instructor.dashboard.index");
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view("instructor.dashboard.contact");
     }
 
-    public function storeContact(Request $request){
+    public function storeContact(Request $request)
+    {
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'text' => 'required',
-        ],[
+        ], [
             "name.required" => "vul een naam in.",
             "email.required" => "vul een email in.",
             "email.email" => "vul een geldige email in",

@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $students = Student::where('active', 1)->with('lessons', 'stripCards')->get();
         return view("instructor.student.index", compact('students'));
     }
 
-    public function show($id){
-        $student = Student::where('id' , $id)->with('lessons', 'stripCards')->first();
+    public function show($id)
+    {
+        $student = Student::where('id', $id)->with('lessons', 'stripCards')->first();
         return view("instructor.student.show", compact('student'));
     }
 }

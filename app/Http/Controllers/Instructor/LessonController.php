@@ -10,25 +10,35 @@ use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $instructor = Auth::guard('instructor')->user();
-        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->orderBy('end', 'asc')->with('car', 'instructor', 'student')->get();
+        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->orderBy('end', 'asc')->with(
+            'car',
+            'instructor',
+            'student'
+        )->get();
         return view('instructor.lesson.index', compact('lessons'));
     }
 
-    public function personal(){
+    public function personal()
+    {
         $instructor = Auth::guard('instructor')->user();
-        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->whereBetween('start', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->with('car', 'instructor', 'student')->orderBy('end', 'asc')->get();
+        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->whereBetween(
+            'start',
+            [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)]
+        )->with('car', 'instructor', 'student')->orderBy('end', 'asc')->get();
         return view('instructor.lesson.index', compact('lessons'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $lesson = Lesson::where('id', $id)->with('car', 'instructor', 'student')->first();
         return view('instructor.lesson.edit', compact('lesson'));
     }
 
-    public function update($id, Request $request){
-
+    public function update($id, Request $request)
+    {
         $data = $request->validate([
             'report' => 'nullable'
         ]);
@@ -39,8 +49,8 @@ class LessonController extends Controller
         return redirect()->route('instructor.lesson.personal');
     }
 
-    public function finish($id, Request $request){
-
+    public function finish($id, Request $request)
+    {
         $data = $request->validate([
             'report' => 'nullable'
         ]);
@@ -50,10 +60,11 @@ class LessonController extends Controller
         $lesson->update($data);
 
         $stripCard = $lesson->student->firstNonEmptyStripCard();
-        if($stripCard == null){ return; }
+        if ($stripCard == null) {
+            return;
+        }
         $stripCard->update([
-            "remaining" => $stripCard->remaining -1,
+            "remaining" => $stripCard->remaining - 1,
         ]);
-
     }
 }
