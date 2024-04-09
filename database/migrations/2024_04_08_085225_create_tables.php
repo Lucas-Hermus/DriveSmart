@@ -31,6 +31,8 @@ return new class extends Migration
             $table->integer('instructor_id')->nullable()->index('lesson-fk3');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->text('report')->nullable();
+            $table->boolean('completed')->default(false);
             $table->boolean('active')->default(true);
         });
 

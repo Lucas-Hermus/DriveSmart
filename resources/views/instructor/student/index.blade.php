@@ -18,13 +18,6 @@
             <tbody>
 
             @foreach ($students as $student)
-                @php
-                    // count how many lessons the current student has remaining
-                    $remainingLessons = 0;
-                    foreach($student->stripCards as $stripCard){
-                        $remainingLessons += $stripCard->remaining;
-                    }
-                @endphp
                 <tr>
                     <td>{{ $student->first_name }} {{ $student->sir_name }}</td>
                     <td>{{ $student->address}}</td>
@@ -32,7 +25,7 @@
                     <td>{{ $student->city}}</td>
                     <td>{{ $student->phone}}</td>
                     <td>{{ \Illuminate\Support\Str::limit($student->email, 20, '...') }}</td>
-                    <td>{{ $remainingLessons }}</td>
+                    <td>{{ $student->calcuateStripCardBalance() }}</td>
                     <td>
                         <a href="{{ route('instructor.student.edit', ['id' => $student->id]) }}" class="btn btn-primary">Inzien</a>
                     </td>

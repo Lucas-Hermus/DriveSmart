@@ -10,7 +10,7 @@
     <script src="{{ asset('instructor-public/js/app.js') }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('/instructor-public/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('/instructor-public/css/datatable.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
@@ -19,11 +19,7 @@
 <div class="red-header">
     <div class="logo">DriveSmart</div>
 </div>
-<body>
-<div class="customerContent-wrapper">
-    @yield("content")
-</div>
-</body>
+@include("instructor.components.public_sidebar")
 @yield('scripts')
 <script>
 

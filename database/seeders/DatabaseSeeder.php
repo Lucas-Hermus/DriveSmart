@@ -45,11 +45,19 @@ class DatabaseSeeder extends Seeder
             "email" => "student@student.com",
             "password" => Hash::make("student"),
         ]);
+        DB::table('instructor')->insert([
+            "first_name" => 'a',
+            "sir_name" => 'a',
+            "email" => "a@a.com",
+            "is_admin" => true,
+            "password" => Hash::make("a"),
+        ]);
+
 
         Car::factory()->times(100)->create();
         Student::factory()->times(100)->create();
-        Instructor::factory()->times(100)->create();
+        Instructor::factory()->times(4)->create();
         StripCard::factory()->times(100)->create();
-        Lesson::factory()->times(100)->create();
+        Lesson::factory()->times(300)->create();
     }
 }

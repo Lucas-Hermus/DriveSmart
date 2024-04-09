@@ -1,34 +1,28 @@
-@extends("instructor.components.main")
+@extends("instructor.components.dashboard")
 
 @section("content")
     <div class="overflow-auto">
-        <table id="customerTable" class="table">
-            <thead>
-            <tr>
-                <th scope="col">naam</th>
-                <th scope="col">naam</th>
-            </tr>
-            </thead>
-            <tbody>
+        <h1>Contact</h1>
+        <div class="card">
+            <div class="card-body">
+                Drivesmart is op de volgnde tijden via zowel telefoon als email beschikbaar
+                <table>
+                    <thead>
+                        <th>Ma</th>
+                        <td>Di</td>
+                        <td>Wo</td>
+                        <td>Do</td>
+                        <td>Vr</td>
+                        <td>Za</td>
+                        <td>Zo</td>
+                    </thead>
+                    <tbod>
 
-            {{--            @foreach ($tickets as $ticket)--}}
-            <tr>
-                <td>{{ "aa" }}</td>
-                <td>{{ "aa" }}</td>
-                {{--                    <td>{{ $ticket->product->name }}</td>--}}
-            </tr>
-            {{--            @endforeach--}}
-            </tbody>
-        </table>
+                    </tbod>
+                </table>
+
+            </div>
+        </div>
+
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#customerTable').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
-                }
-            });
-        });
-    </script>
-
 @endsection

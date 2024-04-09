@@ -2,10 +2,11 @@
 
 namespace App\Models\Instructor;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as AuthenticatableUser;
 
-class Instructor extends Model
+class Instructor extends AuthenticatableUser implements Authenticatable
 {
     public $timestamps = false; // tells laravel to not expect 'created_at' and 'updated_at' fields to exist
     protected $guarded = []; // allows for mass insertion by setting the variable with guarded fields to an empty array
