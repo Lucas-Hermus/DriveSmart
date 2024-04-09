@@ -45,6 +45,7 @@
     <script>
         $(document).ready(function () {
             $('#customerTable').DataTable({
+                order: [[2, 'asc']],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
                 }

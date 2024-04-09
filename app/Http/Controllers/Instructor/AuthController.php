@@ -23,11 +23,11 @@ class AuthController extends Controller
         $credentials['email'] = $request->email;
         $credentials['password'] = $request->password;
         if (Auth::guard('student')->attempt($credentials)) {
-            return redirect()->route("instructor.student.index");
+            return redirect()->route("instructor.lesson.personal");
         }
 
         if (Auth::guard('instructor')->attempt($credentials)) {
-            return redirect()->route("instructor.student.index");
+            return redirect()->route("instructor.lesson.personal");
         }
         return redirect()->back()->withInput()->withErrors(['email' => 'Ongeldige login gegevens']);
     }

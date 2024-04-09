@@ -13,4 +13,9 @@ class StudentController extends Controller
         $students = Student::where('active', 1)->with('lessons', 'stripCards')->get();
         return view("instructor.student.index", compact('students'));
     }
+
+    public function show($id){
+        $student = Student::where('id' , $id)->with('lessons', 'stripCards')->first();
+        return view("instructor.student.show", compact('student'));
+    }
 }

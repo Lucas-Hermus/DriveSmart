@@ -12,13 +12,13 @@ class LessonController extends Controller
 {
     public function index(){
         $instructor = Auth::guard('instructor')->user();
-        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->with('car', 'instructor', 'student')->get();
+        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->orderBy('end', 'asc')->with('car', 'instructor', 'student')->get();
         return view('instructor.lesson.index', compact('lessons'));
     }
 
     public function personal(){
         $instructor = Auth::guard('instructor')->user();
-        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->whereBetween('start', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->with('car', 'instructor', 'student')->orderBy('start', 'asc')->get();
+        $lessons = Lesson::where(['active' => 1, "instructor_id" => $instructor->id])->whereBetween('start', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->with('car', 'instructor', 'student')->orderBy('end', 'asc')->get();
         return view('instructor.lesson.index', compact('lessons'));
     }
 

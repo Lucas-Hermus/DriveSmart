@@ -14,6 +14,7 @@ Route::get('/contact', [DashboardController::class, 'contact'])->name("instructo
 
 Route::prefix('api')->group(function () {
     Route::post('/login', [AuthController::class, 'attemptLogin'])->name("attemptLogin");
+    Route::post('/contact', [DashboardController::class, 'storeContact'])->name("api.contact");
 });
 Route::middleware(['authenticated'])->group(function () {
     Route::middleware(['role:instructor'])->group(function () {
@@ -26,7 +27,7 @@ Route::middleware(['authenticated'])->group(function () {
 
             Route::prefix('student')->group(function () {
                 Route::get('/', [StudentController::class, 'index'])->name("instructor.student.index");
-                Route::get('/edit/{id}', [StripCardController::class, 'edit'])->name("instructor.student.edit");
+                Route::get('/show/{id}', [StudentController::class, 'show'])->name("instructor.student.show");
             });
 
             Route::prefix('lesson')->group(function () {
@@ -39,7 +40,7 @@ Route::middleware(['authenticated'])->group(function () {
                 Route::prefix('strip-card')->group(function () {
                     Route::post('/store', [StripCardController::class, 'store'])->name("instructor.api.strip_card.store");
                     Route::post('/update/{id}', [StripCardController::class, 'update'])->name("instructor.api.strip_card.update");
-                    Route::put('/delete{id}', [StripCardController::class, 'delete'])->name("instructor.api.strip_card.delete");
+                    Route::put('/delete/{id}', [StripCardController::class, 'delete'])->name("instructor.api.strip_card.delete");
                 });
                 Route::prefix('lesson')->group(function () {
                     Route::post('/store/{id}', [LessonController::class, 'update'])->name("instructor.api.lesson.update");

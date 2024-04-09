@@ -27,6 +27,7 @@ class Student extends AuthenticatableUser implements Authenticatable
     public function calcuateStripCardBalance(){
         $balance = 0;
         foreach($this->stripCards as $stripCard){
+            if(!$stripCard->active){continue;}
             $balance += $stripCard->remaining;
         }
         return $balance;

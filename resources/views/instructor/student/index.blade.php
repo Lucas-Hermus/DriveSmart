@@ -27,7 +27,7 @@
                     <td>{{ \Illuminate\Support\Str::limit($student->email, 20, '...') }}</td>
                     <td>{{ $student->calcuateStripCardBalance() }}</td>
                     <td>
-                        <a href="{{ route('instructor.student.edit', ['id' => $student->id]) }}" class="btn btn-primary">Inzien</a>
+                        <a href="{{ route('instructor.student.show', ['id' => $student->id]) }}" class="btn btn-primary">Inzien</a>
                     </td>
                 </tr>
             @endforeach

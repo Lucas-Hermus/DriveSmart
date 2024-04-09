@@ -64,6 +64,13 @@ return new class extends Migration
             $table->boolean('active')->default(true);
         });
 
+        Schema::create('contact', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->string('name', 100);
+            $table->string('email', 100);
+            $table->text('text');
+        });
+
         Schema::table('strip_card', function (Blueprint $table) {
             $table->foreign(['student_id'], 'strip_card-fk1')->references(['id'])->on('student')->onUpdate('restrict')->onDelete('restrict');
         });
