@@ -30,11 +30,13 @@
                     <div class="mb-3">
                         <input type="submit" class="btn btn-primary" value="Opslaan">
                     </div>
+{{--                    show errors in case of errors--}}
                     @if(count($errors))
                         <div id="form-submit-fail" class="alert alert-danger" role="alert">
                             {{ $errors->first() }}
                         </div>
                     @endif
+{{--                    if there is a success message than show it--}}
                     @if(session()->has('message'))
                         <div class="alert alert-success">
                             {{ session()->get('message') }}

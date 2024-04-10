@@ -2,7 +2,6 @@
 
 @section("content")
     <h1>Strippenkaart aanmaken</h1>
-    {{--    raction="{{route('adminportal.api.product.store')}}"--}}
     <form method="post" data-handle-errors action="{{route('instructor.api.strip_card.store')}}">
         @csrf
         <div class="mb-3">
@@ -22,6 +21,7 @@
             <input type="submit" class="btn btn-primary" value="Opslaan">
         </div>
     </form>
+{{--    show the first error--}}
     @if(count($errors))
         <div id="form-submit-fail" class="alert alert-danger" role="alert">
             {{ $errors->first() }}

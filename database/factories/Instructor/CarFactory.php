@@ -5,7 +5,6 @@ namespace Database\Factories\Instructor;
 use App\Models\Instructor\Car;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Nette\Utils\Random;
 
 /**
  * @extends Factory<Car>
@@ -17,6 +16,7 @@ class CarFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    // generates fake cars
     public function definition(): array
     {
         $faker = Faker::create('nl_NL');
@@ -24,7 +24,7 @@ class CarFactory extends Factory
         $car = $faker->vehicleArray();
         $fuelTypes = ["benziene", "electrish", "diesel"];
         return [
-            'plate' => $this->faker->unique()->bothify('#######'),
+            'plate' => $this->faker->unique()->regexify('[A-Z]{2}-[A-Z]{2}-[0-9]{1}-[A-Z]{2}-[0-9]{1}'),
             'brand' => $car['brand'],
             'model' => $car['model'],
             'fuel' => $fuelTypes[rand(0, 2)],

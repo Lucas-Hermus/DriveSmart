@@ -17,6 +17,8 @@ class InstructorFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    //generates fake instructors
     public function definition(): array
     {
         $faker = Faker::create('nl_NL');
@@ -26,7 +28,7 @@ class InstructorFactory extends Factory
             "sir_name" => $faker->lastName,
             "email" => $faker->email,
             "password" => $faker->sha256,
-            "is_admin" => $faker->boolean,
+            "is_admin" => 0,
         ];
     }
 }

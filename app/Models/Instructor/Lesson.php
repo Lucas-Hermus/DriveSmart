@@ -13,17 +13,20 @@ class Lesson extends Model
     use HasFactory;
 
     // a lesson has one car
-    public function car(){
+    public function car()
+    {
         return $this->hasOne(Car::class, "id", "car_id");
     }
 
     // a lesson has one instructor
-    public function instructor(){
+    public function instructor()
+    {
         return $this->hasOne(Instructor::class, "id", "instructor_id");
     }
 
     // a lesson has one student
-    public function student(){
+    public function student()
+    {
         return $this->hasOne(Student::class, "id", "student_id");
     }
 }

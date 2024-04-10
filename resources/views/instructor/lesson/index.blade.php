@@ -7,7 +7,7 @@
         <h1>Mijn lessen</h1>
     @endif
     <div class="overflow-auto">
-        <table id="customerTable" class="table">
+        <table id="dataTable-table" class="table">
             <thead>
             <tr>
                 <th scope="col">leerling</th>
@@ -24,8 +24,11 @@
             @foreach ($lessons as $lesson)
                 @php $badgeColor = $lesson->completed ? "success" : "secondary" @endphp
                 <tr>
+{{--                    show the student name unless if its not set yet--}}
                     <td>{{ $lesson->student?->first_name ?? "n.b.t." }} {{ $lesson->student?->sir_name }}</td>
                     <td>{{$lesson->car->brand}} {{$lesson->car->model}} ({{$lesson->car->plate}})</td>
+
+{{--                    formatted dates--}}
                     <td>{{ \Carbon\Carbon::parse($lesson->start)->format("d-m-Y")}}</td>
                     <td>{{ \Carbon\Carbon::parse($lesson->start)->format("H:i")}}</td>
                     <td>{{ \Carbon\Carbon::parse($lesson->end)->format("H:i")}}</td>
@@ -35,6 +38,7 @@
                         <td><span class="badge bg-secondary">Ingepland</span></td>
                     @endif
                     <td>
+{{--                        route to the edit page--}}
                         <a href="{{ route('instructor.lesson.edit', ['id' => $lesson->id]) }}" class="btn btn-primary">Beheren</a>
                     </td>
                 </tr>
@@ -43,12 +47,13 @@
         </table>
     </div>
     <script>
+        // init datatables table
         $(document).ready(function () {
-            $('#customerTable').DataTable({
-                order: [[2, 'asc']],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
-                }
+            $('#dataTable-table').DataTable({
+                order: [[2, 'asc']], // sort the third column (start date)
+                language: {
+                    url: '{{ asset('instructor-public/language/datatable.json') }}', // set the language to dutch
+                },
             });
         });
     </script>

@@ -37,6 +37,8 @@
         </div>
 
         <script>
+            // send the put request to finishe a lesson
+            // Note: it's a put request because it's a small update
             function finishLesson(id) {
                 axios.put(`/instructor/api/lesson/finish/${id}`)
                     .then(response => {

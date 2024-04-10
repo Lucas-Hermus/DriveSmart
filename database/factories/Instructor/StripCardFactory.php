@@ -17,9 +17,10 @@ class StripCardFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    //generates fake stripcards
     public function definition(): array
     {
-        $student_id = Student::inRandomOrder()->first()->id;
+        $student_id = Student::inRandomOrder()->first()->id; // get a random student id
         $lessons = [10, 20, 30, 25][rand(0,3)];
         return [
             "student_id" => $student_id,

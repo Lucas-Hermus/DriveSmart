@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="overflow-auto">
-        <table id="customerTable" class="table">
+        <table id="dataTable-table" class="table">
             <thead>
             <tr>
                 <th scope="col">naam</th>
@@ -35,11 +35,12 @@
         </table>
     </div>
     <script>
+        // init the datatable
         $(document).ready(function () {
-            $('#customerTable').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
-                }
+            $('#dataTable-table').DataTable({
+                language: {
+                    url: '{{ asset('instructor-public/language/datatable.json') }}', // set the language to dutch
+                },
             });
         });
     </script>

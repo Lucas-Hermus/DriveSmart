@@ -13,7 +13,8 @@ class Car extends Model
     use HasFactory;
 
     // a car has manny lessons
-    public function lessons(){
-        return $this->hasMany(Lesson::class, "car_id","id");
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, "car_id", "id");
     }
 }

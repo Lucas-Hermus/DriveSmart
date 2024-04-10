@@ -14,7 +14,8 @@ class Instructor extends AuthenticatableUser implements Authenticatable
     use HasFactory;
 
     // an instructor has many lessons
-    public function lessons(){
+    public function lessons()
+    {
         return $this->hasMany(Lesson::class, "instructor_id", "id");
     }
 }

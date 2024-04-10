@@ -16,6 +16,8 @@ class StudentFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    //geneartes fake students
     public function definition(): array
     {
         $faker = Faker::create('nl_NL');

@@ -13,7 +13,8 @@ class StripCard extends Model
     use HasFactory;
 
     // a strip card has one student
-    public function student(){
+    public function student()
+    {
         return $this->hasOne(Student::class, "id", "student_id");
     }
 }

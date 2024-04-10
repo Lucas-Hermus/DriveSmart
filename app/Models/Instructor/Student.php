@@ -15,30 +15,41 @@ class Student extends AuthenticatableUser implements Authenticatable
     use HasFactory;
 
     // a student has many strip cards
-    public function stripCards(){
+    public function stripCards()
+    {
         return $this->hasMany(StripCard::class, "student_id", "id");
     }
 
     // a student has many lessons
-    public function lessons(){
+    public function lessons()
+    {
         return $this->hasMany(Lesson::class, "student_id", "id");
     }
 
-    public function calcuateStripCardBalance(){
+    // calculates the total balance of all stripcards combined from the student
+    public function calcuateStripCardBalance()
+    {
         $balance = 0;
-        foreach($this->stripCards as $stripCard){
-            if(!$stripCard->active){continue;}
-            $balance += $stripCard->remaining;
+        // loop through all stripcards
+        foreach ($this->stripCards as $stripCard) {
+            if (!$stripCard->active) {
+                continue;
+            }
+            $balance += $stripCard->remaining; // add the remaining balance to a total
         }
         return $balance;
     }
 
-    public function firstNonEmptyStripCard(){
-        foreach($this->stripCards as $stripCard){
-            if ($stripCard->remaining > 0){
+    // gets the first stripcard that has a remaining balance (1 or more)
+    // returns null if no stripcards fit this description
+    public function firstNonEmptyStripCard()
+    {
+        // loop through stripcards and return the first one that matches
+        foreach ($this->stripCards as $stripCard) {
+            if ($stripCard->remaining > 0) {
                 return $stripCard;
             }
         }
-        return null;
+        return null; // return null if no matches are found
     }
 }

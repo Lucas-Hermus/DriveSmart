@@ -19,16 +19,18 @@ class LessonFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    //generates fake lessons
     public function definition(): array
     {
         $faker = Faker::create('nl_NL');
         $filled = rand(0,100) > 10 ;
-        $start = Carbon::now()->hour(9)->addDays(rand(-7, 7))->addMinutes(rand(0, 420));
+        $start = Carbon::now()->hour(9)->addDays(rand(-7, 7))->addMinutes(rand(0, 420)); // random date one week from now
         $end = $start->copy()->addHour();
-        $instructorId = Instructor::inRandomOrder()->first()->id;
-        $carId = Car::inRandomOrder()->first()->id;
-        $student_id = Student::inRandomOrder()->first()->id;
-        if($end->isPast()){
+        $instructorId = Instructor::inRandomOrder()->first()->id; // random instructor id
+        $carId = Car::inRandomOrder()->first()->id; // random car id
+        $student_id = Student::inRandomOrder()->first()->id; // random student id
+        if($end->isPast()){ // if already passed than should be filled with data
             $filled = true;
         }
         return [
@@ -38,7 +40,7 @@ class LessonFactory extends Factory
             "start" => $start->format("Y-m-d H:i"),
             "end" => $end->format("Y-m-d H:i"),
             "completed" => $end->isPast(),
-            "report" => $filled ? $faker->text : "",
+            "report" => ($filled && $end->isPast()) ? $faker->text : "",
         ];
     }
 }

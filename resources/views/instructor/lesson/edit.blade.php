@@ -20,9 +20,17 @@
             <label class="form-label">Adres</label>
             <input type="text" disabled class="form-control" value="{{$lesson->student->address}}">
         </div>
-        <div class="mb-3">
-            <label class="form-label">Auto</label>
-            <input type="text" disabled class="form-control" value="{{$lesson->car->brand}} {{$lesson->car->model}} {{$lesson->car->plate}}">
+
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Auto</label>
+                <input type="text" disabled class="form-control" value="{{$lesson->car->brand}} {{$lesson->car->model}} {{$lesson->car->plate}}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Brandstof</label>
+                <input type="text" disabled class="form-control" value="{{$lesson->car->fuel}}">
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Datum</label>
@@ -49,6 +57,7 @@
             @endif
         </div>
         <script>
+            // make the request that finishes a lesson
             function finishLesson(id) {
                 axios.put(`/instructor/api/lesson/finish/${id}`)
                     .then(response => {
@@ -60,6 +69,7 @@
             }
         </script>
     </form>
+{{--    if there are errors than show the first one--}}
     @if(count($errors))
         <div id="form-submit-fail" class="alert alert-danger" role="alert">
             {{ $errors->first() }}

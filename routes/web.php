@@ -7,16 +7,21 @@ use App\Http\Controllers\Instructor\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\instructor\AuthController;
 
+// non authenticated routes
 Route::get('/login', [AuthController::class, 'login'])->name("login");
-Route::post('/sign-out', [AuthController::class, 'signOut'])->name("signOut");
 Route::get('/', [DashboardController::class, 'index'])->name("instructor.dashboard.index");
 Route::get('/contact', [DashboardController::class, 'contact'])->name("instructor.dashboard.contact");
 
+// non authenticated api routes
 Route::prefix('api')->group(function () {
+    Route::post('/sign-out', [AuthController::class, 'signOut'])->name("signOut");
     Route::post('/login', [AuthController::class, 'attemptLogin'])->name("attemptLogin");
     Route::post('/contact', [DashboardController::class, 'storeContact'])->name("api.contact");
 });
+
+// authenticated routes
 Route::middleware(['authenticated'])->group(function () {
+    // instructor routes
     Route::middleware(['role:instructor'])->group(function () {
         Route::prefix('instructor')->group(function () {
             Route::prefix('strip-card')->group(function () {
@@ -36,6 +41,7 @@ Route::middleware(['authenticated'])->group(function () {
                 Route::get('/edit/{id}', [LessonController::class, 'edit'])->name("instructor.lesson.edit");
             });
 
+            // authenticated api routes
             Route::prefix('api')->group(function () {
                 Route::prefix('strip-card')->group(function () {
                     Route::post('/store', [StripCardController::class, 'store'])->name("instructor.api.strip_card.store");

@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // create the student table
         Schema::create('student', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('first_name', 50);
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->boolean('active')->default(true);
         });
-
+        // create the lesson table
         Schema::create('lesson', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('car_id')->nullable()->index('lesson-fk1');
@@ -35,7 +36,7 @@ return new class extends Migration
             $table->boolean('completed')->default(false);
             $table->boolean('active')->default(true);
         });
-
+        // create the car table
         Schema::create('car', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('plate', 12);
@@ -45,7 +46,7 @@ return new class extends Migration
             $table->boolean('cruise_control');
             $table->boolean('active')->default(true);
         });
-
+        // create the instructor table
         Schema::create('instructor', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('first_name', 12);
@@ -55,7 +56,7 @@ return new class extends Migration
             $table->boolean('is_admin');
             $table->boolean('active')->default(true);
         });
-
+        // create the stripcard table
         Schema::create('strip_card', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('student_id')->index('strip_card-fk1');
@@ -63,18 +64,18 @@ return new class extends Migration
             $table->integer('remaining');
             $table->boolean('active')->default(true);
         });
-
+        //create the contact table
         Schema::create('contact', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('name', 100);
             $table->string('email', 100);
             $table->text('text');
         });
-
+        // sets relations for strip card
         Schema::table('strip_card', function (Blueprint $table) {
             $table->foreign(['student_id'], 'strip_card-fk1')->references(['id'])->on('student')->onUpdate('restrict')->onDelete('restrict');
         });
-
+        // sets relations for lesson
         Schema::table('lesson', function (Blueprint $table) {
             $table->foreign(['student_id'], 'lesson-fk1')->references(['id'])->on('student')->onUpdate('restrict')->onDelete('restrict');
             $table->foreign(['car_id'], 'lesson-fk2')->references(['id'])->on('car')->onUpdate('restrict')->onDelete('restrict');
@@ -87,12 +88,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // removes tables if they exist
         Schema::dropIfExists('strip_card');
         Schema::dropIfExists('student');
         Schema::dropIfExists('lesson');
         Schema::dropIfExists('car');
         Schema::dropIfExists('instructor');
 
+        // drops the foreign keys
         Schema::table('strip_card', function (Blueprint $table) {
             $table->dropForeign('strip_card-fk1');
         });

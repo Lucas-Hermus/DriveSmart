@@ -12,6 +12,7 @@
         <label class="form-label">Leerling</label>
         <select name="student_id" id="student_id" class="form-select" data-error-message="Selecteer een Leerling">
             <option selected disabled value="">Leerling</option>
+{{--            select the correct option in the select--}}
             @foreach($students as $student)
                 <option {{$student->id == $stripCard->student->id ? "selected" : ""}} value="{{ $student->id }}"> {{ $student->first_name}} {{ $student->sir_name}}</option>
             @endforeach
@@ -21,6 +22,7 @@
             <input type="submit" class="btn btn-primary" value="Opslaan">
         </div>
     </form>
+{{--    show the first error--}}
     @if(count($errors))
         <div id="form-submit-fail" class="alert alert-danger" role="alert">
             {{ $errors->first() }}

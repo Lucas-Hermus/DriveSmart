@@ -19,7 +19,7 @@
 <div class="red-header">
     <div class="logo">DriveSmart</div>
 </div>
-@include("instructor.components.public_sidebar")
+@include("instructor.components.sidebar")
 @yield('scripts')
 <script>
 
