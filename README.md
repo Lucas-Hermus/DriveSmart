@@ -1,3 +1,6 @@
+#about
+This is my final exam project for my MBO school. 
+
 # installation
 
 ### software requirements:
