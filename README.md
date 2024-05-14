@@ -8,7 +8,7 @@
 
 To run this project in development mode you must first clone the github repo: 
 
-`https://github.com/DriveSmart.git `
+`https://github.com/Lucas010603/DriveSmart`
 
 Now you can configure your database by configuring the .env
 
