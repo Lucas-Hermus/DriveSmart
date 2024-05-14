@@ -1,5 +1,5 @@
 # about
-This is my final exam project for my MBO school. 
+This is my final exam project for my MBO school. This project has been made for a fictional driving school as a means to automate the process and remove paperwork. For this exam, I was tasked with creating the Instructor part of a larger project that would later be put together with two other students. In this repository you will find my part of the exam; "Instructor".
 
 # installation
 
